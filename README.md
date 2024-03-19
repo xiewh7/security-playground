@@ -1,7 +1,23 @@
-# Vue 3 + Vite
+# security-playground
+前端：Vue 3 + Vite
+后端：express + monogodb
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# 前端网络安全调试功能点
+XSS
+CSRF
+点击劫持
+nosql注入
+越权访问
+不安全的文件访问
 
-## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+# 环境配置
+nodejs 18.19.0
+monogodb 7.0.6
+
+# 调试
+默认mongodb端口27017
+
+yarn install
+npm run server
+npm run dev
