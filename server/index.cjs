@@ -101,8 +101,7 @@ app.get('/login-inject', (req, res) => {
     //     return
     // }
     // User.findOne({username: req.query.username , password: req.query.password }).then((user) => {
-    User.findOne().where('username').equals(req.query.username).where('password').equals(req.query.password).then((user) => {
-    // User.findOne({username: { $eq: req.query.username }, password: { $eq: req.query.password }}).then((user) => {
+    User.findOne({username: { $eq: req.query.username }, password: { $eq: req.query.password }}).then((user) => {
         if (user) {
             const token = user.isAdmin ? TOKEN.admin : TOKEN.normal
             res.cookie('token', token, {
