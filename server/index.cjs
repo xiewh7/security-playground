@@ -9,7 +9,7 @@ const path = require('path')
 // 添加csp
 // app.use(helmet.contentSecurityPolicy({
 //   directives: {
-//     defaultSrc: ["'self'"],
+//     defaultSrc: ["'self'"], // 默认可加载/执行的源
 //     frameAncestors: ['none'], // 定义了哪些源可以嵌入当前页面
 //     sandbox: [], // 不允许脚本
 //   },
