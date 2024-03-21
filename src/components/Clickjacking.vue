@@ -9,7 +9,7 @@ import { ref, inject } from 'vue'
 
 <template>
   <div class="click-hack right-part">
-    <div style="position: absolute;height: 100%;width: 100%;" @click="handleClick"></div>
+    <div style="position: absolute;height: 100%;width: 100%;z-index: 2;" @click="handleClick"></div>
     <!-- <iframe src="https://www.52tt.com/" height="100%" width="100%">
     </iframe> -->
     <iframe src="http://localhost:3000/clickJacking" height="100%" width="100%">

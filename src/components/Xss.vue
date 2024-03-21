@@ -14,12 +14,13 @@ let result = ref('')
 let commentList = ref([])
 let name = ref('')
 let inputComment = ref('')
-// 获取URL参数
-var params = new URLSearchParams(window.location.search)
-// 获取'search'参数
-result = params.get('search') || ''
+
 onBeforeMount(() => {
   getComment()
+  // 获取URL参数
+  var params = new URLSearchParams(window.location.search)
+  // 获取'search'参数
+  result = params.get('search') || ''
 })
 const getComment = () => {
   myRequest.get('/getComment').then(res => {
@@ -39,8 +40,8 @@ const escapeHTML = (str) => {
 }
 const addComment = () => {
   myRequest.post('/addComment', {
-      comment: name.value,
-      name: inputComment.value,
+      comment: inputComment.value,
+      name: name.value,
     }).then(res => {
       console.log(res)
       getComment()
@@ -53,7 +54,8 @@ const addComment = () => {
     <div class="">
       <h1>搜索</h1>
       <div>你的搜索结果是：
-        <div class="search-result" v-html="escapeHTML(result)"></div>
+        <!-- <div class="search-result" v-html="escapeHTML(result)"></div> -->
+        <div class="search-result" v-html="result"></div>
       </div>
     </div>
     <div class="input-comment">
@@ -76,13 +78,15 @@ const addComment = () => {
           <tbody>
               <tr class="comment" v-for="item in commentList" :key="item._id">
                   <td class="name">{{ item.name }}</td>
-                  <td class="comment" v-html="escapeHTML(item.comment)"></td>
+                  <td class="comment" v-html="item.comment"></td>
+                  <!-- <td class="comment" v-html="escapeHTML(item.comment)"></td> -->
               </tr>
           </tbody>
       </table>
       <!-- <div class="comment" v-for="item in commentList" :key="item._id">
         姓名：<div class="name">{{ item.name }}</div>
         评论：<div class="comment" v-html="escapeHTML(item.comment)"></div>
+        评论：<div class="comment" v-html="item.comment"></div>
       </div> -->
     </div>
   </div>

@@ -10,7 +10,7 @@ const path = require('path')
 // app.use(helmet.contentSecurityPolicy({
 //   directives: {
 //     defaultSrc: ["'self'"],
-//     frameAncestors: ["'none'"], // 定义了哪些源可以嵌入当前页面
+//     frameAncestors: ['none'], // 定义了哪些源可以嵌入当前页面
 //     sandbox: [], // 不允许脚本
 //   },
 // }))
@@ -62,7 +62,7 @@ const User = mongoose.model('user', UserSchema)
 
 
 app.use(cors({
-
+    // origin: 'http://127.0.0.1:5173',
     origin: 'http://localhost:5173', // 网页端的地址
     // origin: 'www', // 网页端的地址
     credentials: true // 允许跨域cookie
@@ -100,8 +100,8 @@ app.get('/login-inject', (req, res) => {
     //     res.send('login failed')
     //     return
     // }
-    // User.findOne({username: req.query.username , password: req.query.password }).then((user) => {
-    User.findOne({username: { $eq: req.query.username }, password: { $eq: req.query.password }}).then((user) => {
+    User.findOne({username: req.query.username , password: req.query.password }).then((user) => {
+    // User.findOne({username: { $eq: req.query.username }, password: { $eq: req.query.password }}).then((user) => {
         if (user) {
             const token = user.isAdmin ? TOKEN.admin : TOKEN.normal
             res.cookie('token', token, {

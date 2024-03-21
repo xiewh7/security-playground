@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a href="http://localhost:3000/csrf">gogogo</a>
+        <a href="http://localhost:3000/csrf">surprise</a>
     </div>
 </template>
 
