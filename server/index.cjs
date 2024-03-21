@@ -106,7 +106,9 @@ app.get('/login-inject', (req, res) => {
             const token = user.isAdmin ? TOKEN.admin : TOKEN.normal
             res.cookie('token', token, {
                 maxAge: 900000,
-            })
+                // sameSite: 'strict',
+            },
+            )
             res.send({
                 isAdmin: user.isAdmin,
                 token,
@@ -128,6 +130,7 @@ app.post('/login', (req, res) => {
             const token = user.isAdmin ? TOKEN.admin : TOKEN.normal
             res.cookie('token', token, {
                 maxAge: 900000,
+                // sameSite: 'strict',
             })
             res.send({
                 isAdmin: user.isAdmin,
@@ -160,12 +163,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json())
 
 // 添加评论
-app.post('/addComment', (req, res) => {
-    console.log(req.body)
-    const comment = new Comment({name: req.body.name, comment: req.body.comment})
-    comment.save().then(() => {
-        res.send('comment added')
-    })
+app.get('/addComment', (req, res) => {
+    console.log(req.query)
+    if (req.cookies && req.cookies.token) {
+        const comment = new Comment({name: req.query.name, comment: req.query.comment})
+        comment.save().then(() => {
+            res.send('comment added')
+        })
+    } else {
+        res.send('comment failed')
+    }
 })
 // 添加评论
 app.get('/getComment', (req, res) => {

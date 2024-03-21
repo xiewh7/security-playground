@@ -39,9 +39,11 @@ const escapeHTML = (str) => {
     return str?.replace(/[&<>"']/g, function(m) { return map[m] })
 }
 const addComment = () => {
-  myRequest.post('/addComment', {
+  myRequest.get('/addComment', {
+    params: {
       comment: inputComment.value,
       name: name.value,
+    }
     }).then(res => {
       console.log(res)
       getComment()
