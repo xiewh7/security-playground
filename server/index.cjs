@@ -81,16 +81,16 @@ const TOKEN = {
 app.get('/getUser', (req, res) => {
     console.log('getUser', req.cookies)
     // 是管理员
-    if (req.cookies && req.cookies.token === TOKEN.admin) {
-        User.find({}).then((users) => {
-            res.send(users)
-        })
-    } else {
-        res.send('no permission')
-    }
-    // User.find({}).then((users) => {
-    //     res.send(users)
-    // })
+    // if (req.cookies && req.cookies.token === TOKEN.admin) {
+    //     User.find({}).then((users) => {
+    //         res.send(users)
+    //     })
+    // } else {
+    //     res.send('no permission')
+    // }
+    User.find({}).then((users) => {
+        res.send(users)
+    })
 })
 // 登录query注入型
 app.get('/login-inject', (req, res) => {
